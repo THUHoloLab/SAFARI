@@ -1,6 +1,6 @@
-# **SAFARI**: **S**patial **A**nd **F**ourier-domain **A**daptive **R**egularized **I**version for complex wavefront characterization
+# **SAFARI**: **S**patial **A**nd **F**ourier-domain **A**daptive **R**egularized **I**nversion for complex wavefront characterization
 
-Authors: **[Yunhui Gao](https://github.com/Yunhui-Gao)** (gyh21@mails.tsinghua.edu.cn), **[Liangcai Cao](https://scholar.google.com/citations?user=FYYb_-wAAAAJ&hl=en)** (clc@tsinghua.edu.cn), and **[Din Ping Tsai](https://www.cityu.edu.hk/stfprofile/dptsai.htm)** (dptsai@cityu.edu.hk)
+Authors: **[Yunhui Gao](https://github.com/Yunhui-Gao)**, **[Liangcai Cao](https://scholar.google.com/citations?user=FYYb_-wAAAAJ&hl=en)**, and **[Din Ping Tsai](https://www.cityu.edu.hk/stfprofile/dptsai.htm)**
 
 :school: *[**HoloLab**](http://www.holoddd.com/), Tsinghua University*, and *[**Meta-Devices Lab**](https://dinpingtsai.wixsite.com/mysite), City University of Hong Kong*
 
