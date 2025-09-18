@@ -30,9 +30,10 @@ We have included the example code for generating different types of wavefront, w
 <summary> Generation of <strong>speckel fields</strong></summary>
 
 ```matlab
-rng(1)                          % random seed, for reproducibility
-grain_size = 16;                % speckle grain size (pixel)
+rng(0)                          % random seed, for reproducibility
+grain_size = 8;                 % speckle grain size (pixel)
 m = round(n/grain_size);        % number of speckles in one dimension
+m = round((m+1)/2)*2;           % make m an even number
 u = exp(1i*rand(m,m)*2*pi);     % random phase uniformly sampled in [0,2pi)
 wavefront = fftshift(fft2(fftshift(zeropad(u,(n-m)/2)))); % fft to obtain speckles
 ```
@@ -45,7 +46,7 @@ wavefront = fftshift(fft2(fftshift(zeropad(u,(n-m)/2)))); % fft to obtain speckl
 ```matlab
 [X,Y] = meshgrid((-n/2:n/2-1)*params.pxsize);   % define 2D coordinate (mm)
 z = 0;      % z position (mm)
-w0 = 0.5;   % beam waist (mm)
+w0 = 0.2;   % beam waist (mm)
 l = 3;      % azimuthal index
 p = 3;      % radial index
 wavefront = genLaguerreGaussian(X,Y,z,params.wavlen,w0,l,p);
@@ -59,10 +60,10 @@ wavefront = genLaguerreGaussian(X,Y,z,params.wavlen,w0,l,p);
 ```matlab
 [X,Y] = meshgrid((-n/2:n/2-1)*params.pxsize);   % define 2D coordinate (mm)
 z = 0;      % z position (mm)
-w0 = 0.5;   % beam waist (mm)
-m = 3;      % mode index
-n = 3;      % mode index
-wavefront = genHermiteGaussian(X,Y,z,params.wavlen,w0,m,n);
+w0 = 0.2;   % beam waist (mm)
+mi = 3;     % mode index
+ni = 3;     % mode index
+wavefront = genHermiteGaussian(X,Y,z,params.wavlen,w0,mi,ni);
 ```
 
 </details>
@@ -71,9 +72,8 @@ wavefront = genHermiteGaussian(X,Y,z,params.wavlen,w0,m,n);
 <summary> Generation of <strong>Ince-Gaussian beams</strong></summary>
 
 ```matlab
-[X,Y] = meshgrid((-n/2:n/2-1)*params.pxsize);   % define 2D coordinate (mm)
 z = 0;      % z position (mm)
-w0 = 0.5;   % beam waist (mm)
+w0 = 0.2;   % beam waist (mm)
 p = 12;     % order 
 m = 8;      % degree
 e = 2;      % ellipticity parameter
@@ -89,10 +89,10 @@ wavefront = wavefront(1:n,1:n);
 
 ```matlab
 [X,Y] = meshgrid((-n/2:n/2-1)*params.pxsize);   % define 2D coordinate (mm)
-w0 = 0.3;   % scaling factor
-x0 = -n/2*params.pxsize + 1;    % x center location (mm)
-y0 = -n/2*params.pxsize + 1;    % y center location (mm)
-a = 1e-3;   % exponential truncation factor
+w0 = 0.2;                       % scaling factor
+x0 = -n*0.4*params.pxsize;      % x center location (mm)
+y0 = -n*0.4*params.pxsize;      % y center location (mm)
+a = 1e-3;                       % exponential truncation factor
 wavefront = genAiry(X,Y,w0,x0,y0,a);
 ```
 
@@ -116,8 +116,8 @@ wavefront = genBessel(X,Y,z,params.wavlen,n_charge,theta);
 
 ```matlab
 [X,Y] = meshgrid((-n/2:n/2-1)*params.pxsize);   % define 2D coordinate (mm)
-f = 300;    % focal length (mm)
-a = 0.1;    % amplitude attenuation
+f = 200;    % focal length (mm)
+a = 0.2;    % amplitude attenuation
 k = 2*pi/params.wavlen;     % wave number
 wavefront = exp(-a*(X.^2+Y.^2)) .* exp(-1i*k*(X.^2+Y.^2)/2/f);
 ```
@@ -140,7 +140,7 @@ for i = 0:n_max
     z_n(i*(i+1)/2+1:(i+1)*(i+2)/2) = i;
     z_m(i*(i+1)/2+1:(i+1)*(i+2)/2) = -i:2:i;
 end
-rng(1)                                  % set random seed, for reproducibility
+rng(0)                                  % set random seed, for reproducibility
 coef = 2*rand(n_modes,1)-1;             % uniformly sample Zernike coefficients between [-1,1]
 zer = zeros(n,n);
 for i = 1:n_modes
@@ -150,8 +150,7 @@ for i = 1:n_modes
 end
 phase = 2*pi*s_fac*zer;                 % scale the phase profile
 phase = imresize(phase(ceil(n/2-sqrt(2)/4*n+1):floor(n/2+sqrt(2)/4*n-1),...
-    ceil(n/2-sqrt(2)/4*n+1):floor(n/2+sqrt(2)/4*n-1)),[n,n]);
-                                        % crop the central rectangular region
+    ceil(n/2-sqrt(2)/4*n+1):floor(n/2+sqrt(2)/4*n-1)),[n,n]);   % crop the central rectangular region
 a = 1;    % amplitude attenuation
 wavefront = exp(-a*(X.^2 + Y.^2)).*exp(1i*phase);
 ```
@@ -162,9 +161,9 @@ wavefront = exp(-a*(X.^2 + Y.^2)).*exp(1i*phase);
 <summary> Generation of <strong>Fourier phase screens</strong></summary>
 
 ```matlab
-seed = 1;       % set random seed, for reproducibility
+seed = 0;       % set random seed, for reproducibility
 numsub = 10;    % number of subharmonics for subharmonic sampling
-r0 = 0.3;       % Fried parameter (mm)
+r0 = 0.1;       % Fried parameter (mm)
 phase = FourierPhaseScreen(n,params.pxsize,r0,seed,numsub);     % calculate phase screen
 [X,Y] = meshgrid((-n/2:n/2-1)*params.pxsize);   % define 2D coordinate (mm)
 a = 0.1;        % amplitude attenuation
@@ -177,12 +176,55 @@ wavefront = exp(-a*(X.^2 + Y.^2)).*exp(1i*phase);
 <summary> Generation of <strong>turbulence</strong></summary>
 
 ```matlab
-rng(1)          % set random seed, for reproducibility
+rng(0)          % set random seed, for reproducibility
 n_screen = 10;  % number of phase screens
 D1 = 5;         % length of one side of square phase screen (m)
 D2 = 1;         % diameter of the observation aperture (m)
 Dz = 2e5;       % propagation distance (m)
 wavefront = genTurbulence(n,n_screen,D1,D2,Dz,params.wavlen*1e-3);
+```
+
+</details>
+
+<details>
+<summary> Generation of <strong>amplitude targets</strong></summary>
+
+```matlab
+img = im2double(imread('data/thulogo.bmp'));
+img = imresize(img,[n/2,n/2]);
+img = padarray(1-img,[n/4,n/4],0);
+amp = img;
+pha = zeros(n,n);
+wavefront = amp.*exp(1i*pha);
+```
+
+</details>
+
+<details>
+<summary> Generation of <strong>phase targets</strong></summary>
+
+```matlab
+img = im2double(imread('data/cityulogo.bmp'));
+img = imresize(img,[n/2,n/2]);
+img = padarray(1-img,[n/4,n/4],0);
+amp = ones(n,n);
+pha = img*pi;
+wavefront = amp.*exp(1i*pha);
+```
+
+</details>
+
+<details>
+<summary> Generation of <strong>tilted wavefronts</strong></summary>
+
+```matlab
+[X,Y] = meshgrid((-n/2:n/2-1)*params.pxsize);   % define 2D coordinate (mm)
+kmax = 2*pi/params.pxsize/4/2;
+kx = kmax*0.5;
+ky = kmax*0.0;
+pha = kx*X + ky*Y;
+amp = ones(n,n);
+wavefront = amp.*exp(1i*pha);
 ```
 
 </details>

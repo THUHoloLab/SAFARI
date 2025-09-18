@@ -106,13 +106,12 @@ wavefront = fftshift(fft2(fftshift(zeropad(u,(n-m)/2)))); % fft to obtain speckl
 % end
 % phase = 2*pi*s_fac*zer;                 % scale the phase profile
 % phase = imresize(phase(ceil(n/2-sqrt(2)/4*n+1):floor(n/2+sqrt(2)/4*n-1),...
-%     ceil(n/2-sqrt(2)/4*n+1):floor(n/2+sqrt(2)/4*n-1)),[n,n]);
-%                                         % crop the central rectangular region
+%     ceil(n/2-sqrt(2)/4*n+1):floor(n/2+sqrt(2)/4*n-1)),[n,n]);   % crop the central rectangular region
 % a = 1;    % amplitude attenuation
 % wavefront = exp(-a*(X.^2 + Y.^2)).*exp(1i*phase);
 
 % % turbulence (single phase screen)
-% seed = 1;       % set random seed, for reproducibility
+% seed = 0;       % set random seed, for reproducibility
 % numsub = 10;    % number of subharmonics for subharmonic sampling
 % r0 = 0.1;       % Fried parameter (mm)
 % phase = FourierPhaseScreen(n,params.pxsize,r0,seed,numsub);     % calculate phase screen
@@ -120,7 +119,7 @@ wavefront = fftshift(fft2(fftshift(zeropad(u,(n-m)/2)))); % fft to obtain speckl
 % a = 0.1;        % amplitude attenuation
 % wavefront = exp(-a*(X.^2 + Y.^2)).*exp(1i*phase);
 
-% % turbulence (scintillated wavefront)
+% % turbulence (scintillated wavefront) [Note: Optimization Toolbox is requried]
 % rng(0)          % set random seed, for reproducibility
 % n_screen = 10;  % number of phase screens
 % D1 = 5;         % length of one side of square phase screen (m)
@@ -143,18 +142,6 @@ wavefront = fftshift(fft2(fftshift(zeropad(u,(n-m)/2)))); % fft to obtain speckl
 % amp = ones(n,n);
 % pha = img*pi;
 % wavefront = amp.*exp(1i*pha);
-
-% % microlens array
-% r = 100;
-% f = 30;
-% [X,Y] = meshgrid(((-r:1:r-1)+0.5)*params.pxsize);
-% pha = -2*pi/params.wavlen*(X.^2 + Y.^2)/2/f;
-% n_lens = 4;
-% [X,Y] = meshgrid(linspace(-1,1,r*2));
-% amp = (X.^2 + Y.^2)<1;
-% wavefront = zeros(n,n);
-% lens = repmat(amp.*exp(1i*pha),[n_lens,n_lens]);
-% wavefront(n/2-n_lens*r+1:n/2+n_lens*r,n/2-n_lens*r+1:n/2+n_lens*r) = lens;
 
 % % prism
 % [X,Y] = meshgrid((-n/2:n/2-1)*params.pxsize);   % define 2D coordinate (mm)
