@@ -237,15 +237,4 @@ wavefront = amp.*exp(1i*pha);
 </p>
 
 In a typical wavefront sensor, the relationship between the incident wavefront profile $\mathbf{x}$ and the measured field amplitude $\mathbf{y}$ can be described by a generalized forward model of coherent optical imaging systems:
-$$
-    \mathbf{y} = \lvert \mathbf{A} \mathbf{x} \rvert,
-$$
-where $\mathbf{A}$ denotes the measurement matrix of the system. Recovering the complex wavefront from a single exposure is an ill-posed problem known as phase retrieval, and thus requires exploiting additional prior knowledge about the wavefront. To address this, SAFARI employs joint spatial and Fourier-domain regularization, leading to the following inverse problem:
-$$
-\mathbf{\hat{x}} = \mathop{\mathrm{argmin}}_{\mathbf{x}} \, \left\{ \underbrace{\left\| \lvert \mathbf{Ax} \rvert - \mathbf{y} \right\|_2^2}_{F(\mathbf{x})}  + \underbrace{\lambda_a \left\| \mathbf{D} \lvert \mathbf{x} \rvert \right\|_2^2}_{R_a(\mathbf{x})} + \underbrace{\lambda_c \left\| \mathbf{D} \mathbf{x} \right\|_2^2}_{R_c(\mathbf{x})} + \underbrace{I_C(\mathbf{x})}_{R_f(\mathbf{x})} \right\},
-$$
-where $F(\mathbf{x})$ is the data-fidelity loss term ensuring consistency with the forward model. $R_a(\mathbf{x})$ and $R_c(\mathbf{x})$ represent the spatial-domain regularization terms for the amplitude and complex amplitude, respectively, where $\mathbf{D}$ is the spatial finite difference operator and $\lambda_a$, $\lambda_c$ are the corresponding regularization weights. $R_f(\mathbf{x})$ is the Fourier-domain regularization term with $I_C$ denoting the $\{0,+\infty\}$-valued indicator function of set $C$, defined as
-$$
-    C \stackrel{\text{def}}{=} \left\{ \mathbf{x} = \mathbf{F}^{-1} \mathbf{u} \, \vert \, u(k_x,k_y) = 0, k_x^2 + k_y^2 > k_{\text{max}}^2  \right\},
-$$
-where $\mathbf{F}$ denotes the Fourier transform, $k_x$ and $k_y$ represent the coordinates in the spatial frequency domain, and $k_{\text{max}}$ defines the radius of the support region. These regularization terms are motivated by the empirical observation that most wavefronts exhibit smooth spatial distributions with energy predominantly concentrated in low-frequency components. The spatial and Fourier-domain regularizers can be interpreted as *soft* and *hard* low-pass filters and, when combined into a unified framework, offer flexibility in handling different types of wavefront with varying degrees of distortions. The resulting non-convex and non-smooth optimization problem can be solved via standard optimizers such as the proximal gradient algorithm.
+$$\mathbf{y} = \lvert \mathbf{A} \mathbf{x} \rvert,$$
