@@ -235,7 +235,3 @@ wavefront = amp.*exp(1i*pha);
 <p align="left">
 <img src="imgs/fig2.png", width='800'>
 </p>
-
-
-In a typical wavefront sensor, the relationship between the incident wavefront profile $\mathbf{x}$ and the measured field amplitude $\mathbf{y}$ can be described by a generalized forward model of coherent optical imaging systems:
-$$\mathbf{y} = \lvert \mathbf{A} \mathbf{x} \rvert,$$
