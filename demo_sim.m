@@ -3,7 +3,7 @@
 % =========================================================================
 % This code provides a simple simulation demonstration of wavefront 
 % reconstruction of complex optical fields via spatial and Fourier-domain 
-% regularized inversion (SAFARI).
+% regularized inversion (SAFRI).
 %
 % Author: Yunhui Gao (gyh21@mails.tsinghua.edu.cn)
 % =========================================================================
