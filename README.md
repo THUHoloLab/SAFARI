@@ -1,4 +1,4 @@
-# **SAFRI**: **S**patial **A**nd **F**ourier-domain **R**egularized **I**nversion for complex wavefront characterization
+# **SAFARI**: **S**patial **A**nd **F**ourier-dom**A**in **R**egularized **I**nversion for complex wavefront characterization
 
 Authors: **[Yunhui Gao](https://github.com/Yunhui-Gao)**, **[Liangcai Cao](https://scholar.google.com/citations?user=FYYb_-wAAAAJ&hl=en)**, and **[Din Ping Tsai](https://www.cityu.edu.hk/stfprofile/dptsai.htm)**
 
