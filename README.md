@@ -11,7 +11,7 @@ Authors: **[Yunhui Gao](https://github.com/Yunhui-Gao)**, **[Liangcai Cao](https
 </p>
 
 
-**SAFRI** is a general inverse problem framework for wavefront recovery. It leverages the intrinsic physical properties of wavefronts and enables single-shot characterization of diverse classes of complex optical wavefronts, including **structured beams**, **aberrations**, and **speckle fields**.
+**SAFARI** is a general inverse problem framework for wavefront recovery. It leverages the intrinsic physical properties of wavefronts and enables single-shot characterization of diverse classes of complex optical wavefronts, including **structured beams**, **aberrations**, and **speckle fields**.
 
 ## News
 
@@ -22,9 +22,9 @@ Authors: **[Yunhui Gao](https://github.com/Yunhui-Gao)**, **[Liangcai Cao](https
 - The code has been implemented using Matlab 2022b. Older visions may be sufficient but have not been tested.
 
 ## Quick Start
-Run [`demo_sim.m`](https://github.com/THUHoloLab/SAFRI/blob/master/demo_sim.m) with default parameters. Set `gpu = true;` in the code to enable GPU usage.
+Run [`demo_sim.m`](https://github.com/THUHoloLab/SAFARI/blob/master/demo_sim.m) with default parameters. Set `gpu = true;` in the code to enable GPU usage.
 
-We have included the example code for generating different types of wavefront, which are listed below. To simulate the desired wavefront, simply uncomment the corresponding block in [`demo_sim.m`](https://github.com/THUHoloLab/SAFRI/blob/master/demo_sim.m).
+We have included the example code for generating different types of wavefront, which are listed below. To simulate the desired wavefront, simply uncomment the corresponding block in [`demo_sim.m`](https://github.com/THUHoloLab/SAFARI/blob/master/demo_sim.m).
 
 <details>
 <summary> Generation of <strong>speckel fields</strong></summary>
