@@ -15,7 +15,8 @@ Authors: **[Yunhui Gao](https://github.com/Yunhui-Gao)**, **[Liangcai Cao](https
 
 ## News
 
-- 2025.06 :fire: MATLAB code released!
+- 2026.03 &nbsp; :mega:  Paper published in [**Light: Science & Applications**](https://doi.org/10.1038/s41377-026-02241-5)!
+- 2025.06 &nbsp; :fire: MATLAB code released.
 
 
 ## Requirements
@@ -232,6 +233,22 @@ wavefront = amp.*exp(1i*pha);
 
 ## Theory and principle
 
+SAFARI leverages the intrisic physical priors of optical wavefronts and formulate wavefront reconstruction as a regularized inverse problem, as shown in the figure. 
+
 <p align="left">
 <img src="imgs/fig2.png", width='800'>
 </p>
+
+
+## Citation
+
+```BibTex
+@article{gao2026single,
+  title={Single-shot, reference-less computational wavefront sensing for complex optical fields},
+  author={Gao, Yunhui and Cao, Liangcai and Tsai, Din Ping},
+  journal={Light: Science \& Applications},
+  volume={15},
+  pages={174},
+  year={2026}
+}
+```
