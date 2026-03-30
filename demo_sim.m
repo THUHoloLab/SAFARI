@@ -3,7 +3,12 @@
 % =========================================================================
 % This code provides a simple simulation demonstration of wavefront 
 % reconstruction of complex optical fields via spatial and Fourier-domain 
-% regularized inversion (SAFRI).
+% regularized inversion (SAFARI).
+%
+% References:
+% - Y. Gao, L. Cao, and D. P. Tsai, "Single-shot, reference-less 
+%   computational wavefront sensing for complex optical fields," 
+%   Light Sci. Appl. 15, 174 (2026).
 %
 % Author: Yunhui Gao (gyh21@mails.tsinghua.edu.cn)
 % =========================================================================
